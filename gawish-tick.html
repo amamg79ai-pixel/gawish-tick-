@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Gawish Tick – مساعدك الذكي</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+}
+#logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+h1 { color: #1a73e8; }
+p.description { font-size: 18px; color: #333; }
+button {
+    font-size: 16px; padding: 10px 20px; margin: 10px;
+    cursor: pointer; border-radius: 8px; border: none;
+    background-color: #1a73e8; color: white;
+}
+button:hover { background-color: #155ab6; }
+#credits { margin-top: 30px; font-size: 14px; color: #555; }
+#questions { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<img id="logo" src="https://via.placeholder.com/150?text=Gawish+Tick" alt="شعار Gawish Tick">
+<h1>Gawish Tick – مساعدك الذكي</h1>
+<p class="description">مشروع تعليمي لتبسيط مفاهيم تقنية المعلومات</p>
+
+<button id="startBtn">ابدأ</button>
+<button id="voiceBtn">🎤 تحدث معي</button>
+<button id="textBtn">💬 ابدأ المحادثة</button>
+
+<div id="questions">
+<h3>أسئلة نموذجية:</h3>
+<button class="qBtn" data-answer="تقنية المعلومات هي كل ما يتعلق باستخدام الحواسيب والبرمجيات لمعالجة البيانات وتحويلها إلى معلومات مفيدة. تساعدنا على تنظيم المعلومات، التخزين، التواصل، وحل المشاكل بسرعة وكفاءة.">ما المقصود بتقنية المعلومات؟</button>
+<button class="qBtn" data-answer="البيانات هي الحقائق الخام مثل الأرقام أو النصوص بدون معنى محدد. أما المعلومات فهي عندما نرتب هذه البيانات ونفسرها لنفهم شيئًا معينًا، مثل معرفة متوسط درجات الطلاب من قائمة الأرقام.">ما الفرق بين البيانات والمعلومات؟</button>
+<button class="qBtn" data-answer="الأمن السيبراني يحمي معلوماتنا وبياناتنا من الاختراق أو السرقة أو الفيروسات. بدون حماية قوية، قد تفقد بياناتك الشخصية أو الأسرار المهمة لأي شخص غير مصرح له.">ما أهمية الأمن السيبراني؟</button>
+<button class="qBtn" data-answer="الذكاء الاصطناعي هو قدرة الحواسيب على محاكاة التفكير البشري واتخاذ القرارات. يستخدم في تطبيقات مثل التعرف على الصور، الترجمة الآلية، السيارات الذكية، والمساعدين الرقميين مثل Gawish Tick.">ما هو الذكاء الاصطناعي؟</button>
+<button class="qBtn" data-answer="لحماية خصوصيتنا الرقمية يجب استخدام كلمات مرور قوية، تحديث البرامج باستمرار، تجنب الضغط على روابط مشبوهة، وعدم مشاركة معلوماتنا الشخصية إلا مع مصادر موثوقة.">كيف نحافظ على خصوصيتنا الرقمية؟</button>
+</div>
+
+<div id="credits">إعداد: عبدالله جاويش</div>
+
+<script>
+const welcomeText = "السلام عليكم! أنا Gawish Tick، مساعدك الذكي في تقنية المعلومات. اسألني عن أي موضوع يخص التقنية، وراح أشرح لك بكل بساطة.";
+
+function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ar-SA';
+    speechSynthesis.speak(utterance);
+}
+
+document.getElementById('startBtn').addEventListener('click', () => {
+    speak(welcomeText);
+});
+
+document.getElementById('textBtn').addEventListener('click', () => {
+    const question = prompt("اكتب سؤالك:");
+    if(question) {
+        speak("لقد تلقيت سؤالك: " + question + ". سأجيبك لاحقًا.");
+    }
+});
+
+document.getElementById('voiceBtn').addEventListener('click', () => {
+    speak("الآن يمكنك التحدث، سأستمع إليك.");
+});
+
+document.querySelectorAll('.qBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const answer = btn.getAttribute('data-answer');
+        speak(answer);
+    });
+});
+</script>
+
+</body>
+</html>
